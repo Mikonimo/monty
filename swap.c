@@ -4,8 +4,8 @@
  * @stack: the stack being evaluated
  * @line_number: the line number in the file
  *
-*/
-void m_swap(stack_t **stack, unsigned int line_numbr)
+ */
+void m_swap(stack_t **stack, unsigned int line_number)
 {
-    
+
 }
