@@ -15,9 +15,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 /**
  * struct instruction_s - opcode and its function
@@ -29,10 +29,25 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-void addnode(stack_t **head, const int n);
+/**
+ * struct global_v - global variables
+ * @line: token line
+ * @args: command line arguments
+ * @file: pointer to the monty file
+ *
+ * Description: global variables for all files
+ */
+typedef struct global_v
+{
+	char *line;
+	char *args;
+	FILE *file;
+} global_var;
+extern global_var var;
+void add_node(stack_t **stack, int n);
 void m_push(stack_t **stack, unsigned int line_number);
 void m_pall(stack_t **stack, unsigned int line_number);
 void m_nop(stack_t **stack, unsigned int line_number);

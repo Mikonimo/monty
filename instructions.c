@@ -14,19 +14,18 @@ int execute(char *args, stack_t **stack, unsigned int line_number, FILE *file)
 		{"push", m_push},
 		{"pall", m_pall},
 		{"pint", m_pint},
+        {"pop", m_pop},
 		{"swap", m_swap},
 		{"add", m_add},
 		{"nop", m_nop},
 		{NULL, NULL}
 	};
 	unsigned int i = 0;
-	char *code, *rest;
-    (void)rest;
-    (void)file;
+	char *code;
 
 	code = strtok(args, " \n\t");
-	rest = strtok(NULL, " \n\t");
-	while (instructions[i].opcode != NULL)
+	var.line = strtok(NULL, " \n\t");
+	while (instructions[i].opcode && code != NULL)
 	{
 		if (strcmp(code, instructions[i].opcode) == 0)
 		{
@@ -35,8 +34,13 @@ int execute(char *args, stack_t **stack, unsigned int line_number, FILE *file)
 		}
 		i++;
 	}
-	fprintf(stderr, "L%u: unknown instructin %sn", line_number, code);
-	free(args);
-	m_free(*stack);
-	exit(EXIT_FAILURE);
+    if (code && instructions[i].opcode == NULL)
+    {
+        fprintf(stderr, "L%u: unknown instructin %sn", line_number, code);
+        fclose(file);
+        free(args);
+        m_free(*stack);
+        exit(EXIT_FAILURE);
+    }
+    return (1);
 }
