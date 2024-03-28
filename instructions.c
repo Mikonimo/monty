@@ -21,6 +21,8 @@ int execute(char *args, stack_t **stack, unsigned int line_number, FILE *file)
 	};
 	unsigned int i = 0;
 	char *code, *rest;
+    (void)rest;
+    (void)file;
 
 	code = strtok(args, " \n\t");
 	rest = strtok(NULL, " \n\t");
