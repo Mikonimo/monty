@@ -14,7 +14,7 @@ int execute(char *args, stack_t **stack, unsigned int line_number, FILE *file)
 		{"push", m_push},
 		{"pall", m_pall},
 		{"pint", m_pint},
-        {"pop", m_pop},
+		{"pop", m_pop},
 		{"swap", m_swap},
 		{"add", m_add},
 		{"nop", m_nop},
@@ -34,13 +34,13 @@ int execute(char *args, stack_t **stack, unsigned int line_number, FILE *file)
 		}
 		i++;
 	}
-    if (code && instructions[i].opcode == NULL)
-    {
-        fprintf(stderr, "L%u: unknown instructin %sn", line_number, code);
-        fclose(file);
-        free(args);
-        m_free(*stack);
-        exit(EXIT_FAILURE);
-    }
-    return (1);
+	if (code && instructions[i].opcode == NULL)
+	{
+		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, code);
+		fclose(file);
+		free(args);
+		m_free(*stack);
+		exit(EXIT_FAILURE);
+	}
+	return (1);
 }
